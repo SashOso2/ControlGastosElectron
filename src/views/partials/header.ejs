@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi APP</title>
+    <!--Font Awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--Custom CSS -->
+    <link rel="stylesheet" href="css/window.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!--Title Bar-->
+    <div class="title-bar">
+        <span class="title">Control Gastos</span>
+        <div class="window-controls">
+            <button id="minimize">–</button>
+            <button id="maximize">□</button>
+            <button id="close">×</button>
+        </div>
+    </div>
+    <!---->    
+    <div class="container">
+        <!--SideBar-->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <img class="logo" src="img/icon.png" alt="">
+                <h2 class="app-name">ATCH</h2>
+            </div>
+            <hr>
+            <ul>
+                <li><a class="sidebar-link" href="/">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Resumen</span>
+                </a></li>
+                <li><a class="sidebar-link" href="ingresos">
+                    <i class="fa-solid fa-dollar-sign"></i>
+                    <span>Ingesos</span>
+                </a></li>
+                <li><a class="sidebar-link" href="gastos">
+                    <i class="fa-solid fa-credit-card"></i>
+                    <span>Gastos</span>
+                </a></li>
+                <li><a class="sidebar-link" href="fuentes-ingreso">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Fuentes de Ingreso</span>
+                </a></li>
+                <li><a class="sidebar-link" href="grupos-gasto">
+                    <i class="fa-solid fa-dollar-sign"></i>
+                    <span>Grupos de Gasto</span>
+                </a></li>
+                <li><a class="sidebar-link" href="categorias-gasto">
+                    <i class="fa-solid fa-credit-card"></i>
+                    <span>Categorías de Gasto</span>
+                </a></li>
+            </ul>
+        </div>
+        <!--Content-->
+        <div class="content">
+            <!--Header-->
+            <header>
+                <button id="menu-button" class="menu-btn">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div class="search-box">
+                    <input type="text" placeholder="Buscar..." />
+                    <button><i class="fa-solid fa-search"></i></button>
+                </div>
+                <button id="btn-nuevo" onclick="Nuevo()"><i class="fa-solid fa-plus"></i> Nuevo</button>
+            </header>
+            <!--main-->
+            <main>

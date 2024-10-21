@@ -1,0 +1,1 @@
+document.querySelectorAll(".sidebar-link")[0].classList.add("selected");

@@ -1,0 +1,81 @@
+#menu-button{
+    display: none;
+}
+main{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+main>div{
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    overflow: auto;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+td,th{
+    text-align: left;
+    padding: 5px;
+}
+tr{
+    border-bottom: 1px solid rgb(171, 171, 171);
+}
+
+
+
+
+
+
+.titulo{
+    color: var(--titulo-color);
+    width: max-content;
+    float: left;
+}
+#btn-nuevo{
+    background-color: orange;
+    color: white;
+    padding: 8px 10px;
+    border: none;
+    border-radius: 50px;
+    font-weight:bold ;
+    cursor: pointer;
+    float: right;
+}
+
+.btn-editar{
+    background-color: transparent;
+    padding: 0px 5px;
+    border: none;
+    color: rgb(81, 81, 197);
+    font-weight:bold ;
+    cursor: pointer;
+}
+.btn-eliminar{
+    background-color: transparent;
+    padding: 0px 5px;
+    border: none;
+    color: rgb(252, 78, 78);
+    font-weight:bold ;
+    cursor: pointer;
+    margin-left: 2px;
+}
+
+
+/*-------alert---------*/
+.formulario{
+    display: grid;
+    grid-template-columns: max-content auto;
+    gap: 20px;
+    align-items:center ;
+    text-align: left;
+}
+.formulario input,.formulario select{
+    margin: 0;
+    min-width: 0;
+}
