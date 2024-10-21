@@ -147,11 +147,18 @@ npm i electron-packager
 
 npm run package-mac
 npm run package-linux
----------------------------------------------------------------
+-------------------------------Subir a git------------------------
 .gitignore
+
 git init
 git add .
 git commit -m "Primer commit"
-git remote add origin https://github.com/tu-usuario/nombre-del-repositorio.git
+git remote add origin https://github.com/SashOso2/ControlGastosElectron.git
 git push -u origin master
+------------------------------Clonar -------------------------
+git clone https://github.com/SashOso2/ControlGastosElectron.git
+----------------------------Guardar cabmaios--------------------------
+git add .
+git commit -m "Primer commit"
+git push
 */
