@@ -54,7 +54,13 @@ async function Nuevo(){
             <input id="monto" type="text" class="swal2-input" placeholder="Monto" required>
         </div>
         `,
-
+        didOpen: () => {
+            document.getElementById('monto').addEventListener('input', function() {
+                this.value = this.value
+                    .replace(/[^0-9.]/g, '') // Permitir solo números y punto
+                    .replace(/(\..*?)\..*/g, '$1'); // Permitir solo un punto
+            });
+        },
         preConfirm:async () => {
             let fecha = document.getElementById('fecha').value;
             let fuente = document.getElementById('fuente').value;
@@ -126,6 +132,12 @@ async function Editar(id){
         `,
         didOpen: () => {
             document.getElementById('fuente').value = obj.fuente.id;
+            
+            document.getElementById('monto').addEventListener('input', function() {
+                this.value = this.value
+                    .replace(/[^0-9.]/g, '') // Permitir solo números y punto
+                    .replace(/(\..*?)\..*/g, '$1'); // Permitir solo un punto
+            });
         },
         preConfirm:async () => {
             let fecha = document.getElementById('fecha').value;

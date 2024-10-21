@@ -78,6 +78,12 @@ async function Nuevo(){
                 });
             });
 
+            document.getElementById('monto').addEventListener('input', function() {
+                this.value = this.value
+                    .replace(/[^0-9.]/g, '') // Permitir solo números y punto
+                    .replace(/(\..*?)\..*/g, '$1'); // Permitir solo un punto
+            });
+
         },
 
         preConfirm:async () => {
@@ -177,6 +183,12 @@ async function Editar(id){
 
             LoadCategoria();
             cb_categoria.value = obj.categoria.id;
+
+            document.getElementById('monto').addEventListener('input', function() {
+                this.value = this.value
+                    .replace(/[^0-9.]/g, '') // Permitir solo números y punto
+                    .replace(/(\..*?)\..*/g, '$1'); // Permitir solo un punto
+            });
         },
         preConfirm:async () => {
             let fecha = document.getElementById('fecha').value;
