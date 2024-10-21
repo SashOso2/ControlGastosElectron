@@ -115,7 +115,7 @@ app.on('activate', () => {
 ---------------------------------------------------------------
 npm init --yes
 npm install electron --save-dev
-npm install electron
+npm install express
 npm install sqlite3
 npm install ejs
 
