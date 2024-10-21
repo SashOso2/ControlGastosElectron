@@ -35,7 +35,7 @@ router.post(url, async (req, res) => {
     const obj = req.body;
     try {
         await model.Agregar(obj);
-        res.status(201).json({ message: 'Creado' });
+        res.status(201).json(obj);
     } catch (error) {
         res.status(500).json({ message: 'Error al crear', error });
     }
@@ -46,7 +46,7 @@ router.put(url, async (req, res) => {
     const obj = req.body;
     try {
         await model.Actualizar(obj);
-        res.json({ message: 'Actualizada' });
+        res.json(obj);
     } catch (error) {
         res.status(500).json({ message: 'Error al actualizar', error });
     }

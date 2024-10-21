@@ -62,7 +62,9 @@ async function Agregar(obj) {
 
 // Actualiza un registro existente
 async function Actualizar(obj) {
-    return new Promise((resolve, reject) => {
+    return new Promise(async(resolve, reject) => {
+        if (!await Buscar(obj.id))  return reject(new Error('El registro no existe.'));
+
         const sql = `UPDATE ${tabla} SET fecha = ?, fuente_id = ?, observacion = ?, monto = ? WHERE id = ?`;
         db.run(sql, [obj.fecha, obj.fuente.id, obj.observacion, obj.monto, obj.id], function (error) {
             if (error) {
@@ -76,7 +78,9 @@ async function Actualizar(obj) {
 
 // Elimina un registro por ID
 async function Eliminar(id) {
-    return new Promise((resolve, reject) => {
+    return new Promise(async(resolve, reject) => {
+        //if (!await Buscar(obj.id))  return reject(new Error('El registro no existe.'));
+
         const sql = `DELETE FROM ${tabla} WHERE id = ?`;
         db.run(sql, [id], function (error) {
             if (error) {
