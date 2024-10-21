@@ -162,5 +162,6 @@ git add .
 git commit -m "agregar commit"
 git push
 ------------------------------------------------------------------
+git pull origin master
 git status
 */
