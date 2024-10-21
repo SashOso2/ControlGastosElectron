@@ -19,7 +19,7 @@ async function Lista() {
 // Busca un registro por ID
 async function Buscar(id) {
     const lista = await Lista();
-    return lista.find(item => item.id === Number(id));
+    return lista.find(item => item.id === Number(id)) || null;
 }
 
 // Agrega un nuevo registro
@@ -29,9 +29,10 @@ async function Agregar(obj) {
         db.run(sql, [obj.nombre], function (error) {
             if (error) {
                 console.error('Error al agregar registro:', error);
-                return resolve(null);
+                return reject(new Error('No se pudo agregar el registro.'));
             }
-            resolve({ id: this.lastID, nombre: obj.nombre });
+            obj.id=this.lastID;
+            resolve(obj);
         });
     });
 }
@@ -43,9 +44,9 @@ async function Actualizar(obj) {
         db.run(sql, [obj.nombre, obj.id], function (error) {
             if (error) {
                 console.error('Error al actualizar registro:', error);
-                return resolve(null);
+                return reject(new Error('No se pudo actualizar el registro.'));
             }
-            resolve({ id: obj.id, nombre: obj.nombre });
+            resolve(obj);
         });
     });
 }

@@ -39,19 +39,20 @@ async function Lista() {
 // Busca un registro por ID
 async function Buscar(id) {
     const lista = await Lista();
-    return lista.find(item => item.id === Number(id));
+    return lista.find(item => item.id === Number(id)) || null;
 }
 
 // Agrega un nuevo registro
 async function Agregar(obj) {
     return new Promise((resolve, reject) => {
-        const sql = `INSERT INTO ${tabla} (nombre, grupo_id) VALUES (?, ?)`; // Asegúrate de que 'grupo_i' es el nombre correcto
+        const sql = `INSERT INTO ${tabla} (nombre, grupo_id) VALUES (?, ?)`;
         db.run(sql, [obj.nombre, obj.grupo.id], function (error) {
             if (error) {
                 console.error('Error al agregar registro:', error);
                 return reject(new Error('No se pudo agregar el registro.'));
             }
-            resolve({ id: this.lastID, nombre: obj.nombre, grupo: obj.grupo }); // Corregido aquí
+            obj.id=this.lastID;
+            resolve(obj);
         });
     });
 }
@@ -63,9 +64,9 @@ async function Actualizar(obj) {
         db.run(sql, [obj.nombre, obj.grupo.id, obj.id], function (error) {
             if (error) {
                 console.error('Error al actualizar registro:', error);
-                return resolve(null);
+                return reject(new Error('No se pudo actualizar el registro.'));
             }
-            resolve({ id: obj.id, nombre: obj.nombre, grupo: obj.grupo }); // Asegúrate de referenciar correctamente 'obj.grupo'
+            resolve(obj);
         });
     });
 }
@@ -77,7 +78,7 @@ async function Eliminar(id) {
         db.run(sql, [id], function (error) {
             if (error) {
                 console.error('Error al eliminar registro:', error);
-                return resolve(null);
+                return reject(new Error('No se pudo eliminar el registro.'));
             }
             resolve(true);
         });
