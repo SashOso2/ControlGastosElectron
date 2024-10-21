@@ -161,4 +161,6 @@ git clone https://github.com/SashOso2/ControlGastosElectron.git
 git add .
 git commit -m "Primer commit"
 git push
+------------------------------------------------------------------
+git status
 */
