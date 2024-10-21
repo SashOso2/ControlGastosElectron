@@ -144,7 +144,7 @@ npm i electron-packager
     ...
 }
 
-
+npm run package-win
 npm run package-mac
 npm run package-linux
 -------------------------------Subir a git------------------------
