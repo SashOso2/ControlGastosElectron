@@ -7,7 +7,7 @@ main{
     flex-direction: column;
     gap: 10px;
 }
-main>div{
+.table-container{
     background-color: white;
     padding: 10px;
     border-radius: 5px;
@@ -78,4 +78,37 @@ tr{
 .formulario input,.formulario select{
     margin: 0;
     min-width: 0;
+}
+
+
+
+
+.resumen{
+    gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+}
+.resumen>div{
+    border-radius: 5px;
+    padding: 10px;
+    gap: 10px;
+    display: grid;
+    grid-template-rows: auto auto;
+}
+.resumen>div i{
+    font-size: 20px;
+    color: rgb(109, 171, 225);
+}
+.resumen>div span{
+    font-weight: bolder;
+    font-size: 18px;
+}
+.resumen-ingresos{
+    background-color: rgb(217, 250, 231);
+}
+.resumen-gastos{
+    background-color: rgb(254, 238, 241);
+}
+.resumen-total{
+    background-color: rgb(254, 242, 220);
 }

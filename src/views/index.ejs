@@ -1,5 +1,22 @@
 <%- include('partials/header') %>
 
+<div class="resumen">
+    <div class="resumen-ingresos">
+        <i class="fa-solid fa-arrow-up"></i>
+        <span  id="ingresos-monto">S/ 0.00</span>
+        <small>Ingresos este mes</small>
+    </div>
+    <div class="resumen-gastos">
+        <i class="fa-solid fa-arrow-down"></i>
+        <span  id="gastos-monto">S/ 0.00</span>
+        <small>Gastos este mes</small>
+    </div>
+    <div class="resumen-total">
+        <i class="fa-solid fa-wallet"></i>
+        <span id="saldo-disponible">S/ 0.00</span>
+        <small>Saldo disponible</small>
+    </div>
+</div>
 
 <script src="js/resumen.js"></script>
 <%- include('partials/footer') %>

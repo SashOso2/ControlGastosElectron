@@ -179,7 +179,3 @@ async function Eliminar(id){
         }
     }
 }
-//-------------------------------------------------------------------------
-window.addEventListener("load",async function(){
-    await Listar();
-})
