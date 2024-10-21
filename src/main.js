@@ -159,7 +159,7 @@ git push -u origin master
 git clone https://github.com/SashOso2/ControlGastosElectron.git
 ----------------------------Guardar cabmaios--------------------------
 git add .
-git commit -m "Primer commit"
+git commit -m "agregar commit"
 git push
 ------------------------------------------------------------------
 git status
