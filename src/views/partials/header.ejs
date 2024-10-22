@@ -61,16 +61,28 @@
         <div class="content">
             <!--Header-->
             <header>
-                <button id="menu-button" class="menu-btn">
+                <button id="menu-button">
                     <i class="fa-solid fa-bars"></i>
                 </button>
+                <div class="combo-fecha">
+                    <select id="año">
+                        <% for (let i = new Date().getFullYear(); i >= 2000; i--) { %>
+                            <option value="<%= i %>"><%= i %></option>
+                        <% } %>
+                    </select>
+                    
+                    <select id="mes">
+                        <% const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']; %>
+                        <% for (let i = 0; i < meses.length; i++) { %>
+                            <option value="<%= i+1 %>"><%= meses[i] %></option>
+                        <% } %>
+                    </select>
+                </div>  
                 <div class="search-box">
                     <input type="text" placeholder="Buscar..." />
                     <button><i class="fa-solid fa-search"></i></button>
                 </div>
-
-                <%- include("combo-date") %>
-                
+                 
             </header>
             <!--main-->
             <main>

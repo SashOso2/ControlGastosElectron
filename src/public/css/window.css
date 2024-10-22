@@ -189,20 +189,17 @@ body{
 }
 /*###############################-header-#############################*/
 header{
+    background-color: #ffffff;
     position: sticky;
     top: 0px;
     z-index: 100;
-}
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #ffffff;
-    color: white;
     padding: 10px;
+    gap: 10px;
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
 }
-.search-box {
-    display: flex;
+header .search-box {
+    margin-left: auto;
     align-items: center;
     background-color: rgb(255, 255, 255);
     display: grid;
@@ -210,20 +207,39 @@ header {
     border-radius: 3px;
     overflow: hidden;
     border: 1px solid rgb(148, 148, 148);
+
+    & input {
+        background-color: transparent;
+        padding: 5px;
+        border: none;
+        outline: none;
+        min-width: 0px;
+        width: 100px;
+    }
+    &  button{
+        background-color: transparent;
+        padding: 5px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        height: 100%;
+    }
 }
-.search-box input {
-    background-color: transparent;
-    padding: 5px;
-    border: none;
-    outline: none;
-    min-width: 0px;
-    width: 100px;
+header .combo-fecha{
+    margin-left: auto;
+    color: black;
+    height: 100%;
+    & select{
+        outline: none;
+        border: none;
+        padding: 5px;
+    }
+    
 }
-.search-box button{
+header #menu-button{
     background-color: transparent;
     padding: 5px;
     border: none;
     outline: none;
     cursor: pointer;
-    height: 100%;
 }

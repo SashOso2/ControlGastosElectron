@@ -1,7 +1,12 @@
 document.querySelectorAll(".sidebar-link")[1].classList.add("selected");
+
+
 //------------------------------------------------------------------------
 async function Listar() {
-    const data=await Ingreso.Lista();
+    const mes=parseInt(document.getElementById("mes").value);
+    const año=parseInt(document.getElementById("año").value);
+    let data=await Ingreso.Lista();
+    data=FiltrarPorFecha(data,año,mes)
 
     let content="";
     data.forEach((row,index) => {

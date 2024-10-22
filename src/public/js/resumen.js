@@ -1,41 +1,31 @@
 document.querySelectorAll(".sidebar-link")[0].classList.add("selected");
 
 
-async function IngresosMes() {
-    const lista = await Ingreso.Lista();
-    const hoy = new Date();
-    const inicioMes = new Date(hoy.getFullYear(), hoy.getMonth(), 1); // 1ro del mes actual
-
-    // Filtrar ingresos del mes actual
-    return lista.filter(fila => {
-        const fechaIngreso = new Date(fila.fecha); // Suponiendo que fila.fecha es una cadena de fecha
-        return fechaIngreso >= inicioMes && fechaIngreso <= hoy;
-    });
+async function ListaIngresos() {
+    const mes=parseInt(document.getElementById("mes").value);
+    const año=parseInt(document.getElementById("año").value);
+    const lista=await Ingreso.Lista();
+    return FiltrarPorFecha(lista,año,mes);
 }
 
-async function GastosMes() {
-    const lista = await Gasto.Lista(); // Cambié de Ingreso a Gasto
-    const hoy = new Date();
-    const inicioMes = new Date(hoy.getFullYear(), hoy.getMonth(), 1); // 1ro del mes actual
-
-    // Filtrar gastos del mes actual
-    return lista.filter(fila => {
-        const fechaGasto = new Date(fila.fecha); // Suponiendo que fila.fecha es una cadena de fecha
-        return fechaGasto >= inicioMes && fechaGasto <= hoy;
-    });
+async function ListaGastos() {
+    const mes=parseInt(document.getElementById("mes").value);
+    const año=parseInt(document.getElementById("año").value);
+    const lista=await Gasto.Lista();
+    return FiltrarPorFecha(lista,año,mes);
 }
-
 
 async function Resumen() {
-    const lista_ingresos=await IngresosMes();
+    const lista_ingresos= await ListaIngresos();
+    const lista_gastos=await ListaGastos();;
 
     let ingresos_monto=0;
     lista_ingresos.forEach(fila => {
         ingresos_monto+=fila.monto
     });
 
-    const lista_gastos=await GastosMes();
     let gastos_monto=0;
+
     lista_gastos.forEach(fila => {
         gastos_monto+=fila.monto
     });
@@ -49,6 +39,14 @@ async function Resumen() {
     document.getElementById("saldo-disponible").textContent=FormatoSoles(saldo_disponible);
 }
 
+
+document.getElementById("mes").addEventListener("change",async ()=>{
+    await Resumen();
+})
+document.getElementById("año").addEventListener("change",async ()=>{
+    await Resumen();
+})
 window.addEventListener("load",async ()=>{
-    Resumen();
+    document.getElementById("mes").value=MesActual();
+    await Resumen();
 })
