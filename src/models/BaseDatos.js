@@ -58,6 +58,14 @@ function crearTablas() {
             FOREIGN KEY (fuente_id) REFERENCES fuente_ingreso(id)
         )
     `;
+    const sqlUsuario = `
+        CREATE TABLE IF NOT EXISTS usuario (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            nombre TEXT NOT NULL,
+            username TEXT UNIQUE NOT NULL,
+            password TEXT NOT NULL
+        )
+    `;
 
     // Ejecuta las consultas para crear las tablas
     db.run(sqlFuenteIngreso, (error) => {
@@ -89,6 +97,42 @@ function crearTablas() {
             console.error('Error al crear la tabla ingreso:', error.message);
         }
     });
+    db.run(sqlUsuario, (error) => {
+        if (error) {
+            console.error('Error al crear la tabla usuario:', error.message);
+        }else{
+            agregarSuperUsuario()
+        }
+    });
 }
+function agregarSuperUsuario() {
+    const username = 'admin';
+    const password = 'admin';
+    const nombre ="Administrador"
 
+    const sqlCheckSuperUser = `
+        SELECT COUNT(*) AS count FROM usuario WHERE username = ?
+    `;
+
+    db.get(sqlCheckSuperUser, [username], (error, row) => {
+        if (error) {
+            console.error('Error al verificar superusuario:', error.message);
+            return;
+        }
+
+        if (row.count === 0) {
+            const sqlInsertSuperUser = `
+                INSERT INTO usuario (nombre, username, password) VALUES (?, ?, ?)
+            `;
+
+            db.run(sqlInsertSuperUser, [nombre, username, password], function (error) {
+                if (error) {
+                    console.error('Error al crear superusuario:', error.message);
+                } else {
+                    console.log('Superusuario creado exitosamente.');
+                }
+            });
+        }
+    });
+}
 module.exports = db;

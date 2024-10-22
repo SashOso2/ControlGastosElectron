@@ -30,7 +30,11 @@ expressApp.use(CategoriaGastoRouter);
 
 // Rutas de renderización con EJS
 expressApp.get('/', (req, res) => {
-    res.render('index');
+    res.render('login');
+});
+
+expressApp.get('/resumen', (req, res) => {
+    res.render('resumen');
 });
 
 expressApp.get('/categorias-gasto', (req, res) => {
@@ -61,7 +65,7 @@ expressApp.listen(PORT, () => {
 // Función para crear la ventana principal de Electron
 function createWindow() {
     ventanaPrincipal = new BrowserWindow({
-        width: 800,
+        width: 1024,
         height: 600,
         //frame: false,
         webPreferences: {

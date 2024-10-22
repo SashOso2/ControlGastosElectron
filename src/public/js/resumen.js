@@ -37,6 +37,9 @@ async function Resumen() {
     document.getElementById("ingresos-monto").textContent=FormatoSoles(ingresos_monto);
     document.getElementById("gastos-monto").textContent=FormatoSoles(gastos_monto);
     document.getElementById("saldo-disponible").textContent=FormatoSoles(saldo_disponible);
+    if(saldo_disponible<0){
+        document.getElementById("saldo-disponible").style.color="#ff3333";
+    }
 }
 
 
