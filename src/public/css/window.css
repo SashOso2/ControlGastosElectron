@@ -11,22 +11,19 @@ body{
 }
 .container{
     display: flex;
-    height: calc(100dvh - 40px);
+    height: 100dvh;
 }
 .content{
     width: 100%;
     overflow: auto;
     position: relative;
 }
-.title-bar{
-    height: 40px;
-}
 /*######################################################################*/
 :root{
     --sidebar-background-color:#212529;
     --sidebar-color:white;
     --sidebar-width: 240px;
-    --sidebar-compressed-width: 60px;
+    --sidebar-compressed-width: 50px;
     --sidebar-button-background-color:#0D6EFD;
     --sidebar-button-color:white;
 }
@@ -153,40 +150,6 @@ body{
         margin: 0px;
     }
 }
-/*###############################-title bar-#############################*/
-.title-bar {
-    background-color: #535353;
-    color: white;
-    display: flex;
-    align-items: center;
-}
-.title-bar .title {
-    flex: 1;
-    padding-left: 10px;
-    overflow: hidden;
-    text-wrap: nowrap;
-    text-overflow: ellipsis;
-    cursor: move; /* Cambiar cursor para indicar que se puede mover */
-    -webkit-app-region: drag; /* Permitir que la región sea arrastrable */
-}
-.window-controls {
-    height: 100%;
-    display: flex;
-    align-items: center;
-}
-.window-controls button {
-    height: 100%;
-    width: 60px;
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-    padding: 0 10px;
-    font-size: 16px;
-}
-.window-controls button:hover{
-    background-color: rgba(255, 255, 255, 0.192);
-}
 /*###############################-header-#############################*/
 header{
     background-color: #ffffff;
@@ -197,6 +160,9 @@ header{
     gap: 10px;
     display: grid;
     grid-template-columns: auto 1fr auto auto;
+    border-top: 1px solid rgb(226, 226, 226);
+    cursor: move;
+    -webkit-app-region: drag; 
 }
 header .search-box {
     margin-left: auto;
@@ -222,13 +188,11 @@ header .search-box {
         border: none;
         outline: none;
         cursor: pointer;
-        height: 100%;
     }
 }
 header .combo-fecha{
     margin-left: auto;
     color: black;
-    height: 100%;
     & select{
         outline: none;
         border: none;
@@ -242,4 +206,10 @@ header #menu-button{
     border: none;
     outline: none;
     cursor: pointer;
+}
+
+header button,
+header input,
+header select {
+    -webkit-app-region: no-drag; /* Evita que estos elementos sean arrastrables */
 }
