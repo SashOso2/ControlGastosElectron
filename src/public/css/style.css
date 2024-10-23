@@ -3,34 +3,52 @@ main{
     padding: 10px;
     display: flex;
     flex-direction: column;
+    flex: 1;
     gap: 10px;
 }
+
 .table-container{
     background-color: white;
     padding: 10px;
     border-radius: 5px;
     overflow: auto;
     box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+    
+    & table{
+        width: 100%;
+        border-collapse: collapse;
+        & td,th{
+            text-align: left;
+            padding: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 200px;
+        }
+        & tr{
+            border-bottom: 1px solid rgb(171, 171, 171);
+        }
+        & .btn-editar{
+            background-color: transparent;
+            padding: 0px 5px;
+            border: none;
+            color: rgb(81, 81, 197);
+            font-weight:bold ;
+            cursor: pointer;
+        }
+        & .btn-eliminar{
+            background-color: transparent;
+            padding: 0px 5px;
+            border: none;
+            color: rgb(252, 78, 78);
+            font-weight:bold ;
+            cursor: pointer;
+            margin-left: 2px;
+        }
+        
+    }
+    
 }
-
-table{
-    width: 100%;
-    border-collapse: collapse;
-}
-td,th{
-    text-align: left;
-    padding: 5px;
-    white-space: nowrap; /* Evitar salto de línea */
-    overflow: hidden;    /* Ocultar el texto que desborda */
-    text-overflow: ellipsis;
-}
-tr{
-    border-bottom: 1px solid rgb(171, 171, 171);
-}
-
-
-
-
 
 
 .titulo{
@@ -49,23 +67,8 @@ tr{
     float: right;
 }
 
-.btn-editar{
-    background-color: transparent;
-    padding: 0px 5px;
-    border: none;
-    color: rgb(81, 81, 197);
-    font-weight:bold ;
-    cursor: pointer;
-}
-.btn-eliminar{
-    background-color: transparent;
-    padding: 0px 5px;
-    border: none;
-    color: rgb(252, 78, 78);
-    font-weight:bold ;
-    cursor: pointer;
-    margin-left: 2px;
-}
+
+
 
 
 /*-------alert---------*/
@@ -112,4 +115,36 @@ tr{
 }
 .resumen-total{
     background-color: rgb(254, 242, 220);
+}
+
+
+
+.graficas{
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 10px;
+}
+.graficas-lateral{
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+canvas{
+    width: 100%;
+}
+
+.graficas-central{
+    width: 100%;
+}
+.cont-grafica{
+    padding: 10px;
+    width: 100%;
+    background-color: white;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.cont-canvas{
+    width: 500px;
+    margin: auto;
 }

@@ -1,5 +1,4 @@
 <%- include('partials/header') %>
-
 <div class="resumen">
     <div class="resumen-ingresos">
         <i class="fa-solid fa-arrow-up"></i>
@@ -18,5 +17,37 @@
     </div>
 </div>
 
+<div class="graficas">
+    <div class="graficas-lateral">
+        <div class="cont-grafica">
+            <canvas id="grafica_ingresos"></canvas>
+        </div>
+        <div class="cont-grafica">
+            <canvas id="grafica_gastos"></canvas>
+        </div>
+    </div>
+    <div class="graficas-central">
+        <div class="cont-grafica">
+            <div class="cont-canvas">
+                <canvas id="gragica_anual"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="js/graficas.js"></script>
 <script src="js/resumen.js"></script>
+<script>
+    const labels = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio'];
+        const ingresos = [3000, 4000, 3500, 5000, 4500, 0, 0];
+        const gastos = [2000, 2500, 3000, 4000, 3500, 0, 0];
+
+        createPieChart('grafica_ingresos', ['Sueldo', 'Cachuelo'], [2500,200]);
+        createPieChart('grafica_gastos', ['Alimentacion', 'educacion',"servicios"], [50,1250,200]);
+
+        createBarChart('gragica_anual', labels, ingresos, gastos);
+
+</script>
 <%- include('partials/footer') %>
