@@ -22,7 +22,10 @@ async function Lista() {
             JOIN 
                 ${tabla_categoria} c ON t.categoria_id = c.id
             JOIN 
-                ${tabla_grupo} g ON c.grupo_id = g.id;
+                ${tabla_grupo} g ON c.grupo_id = g.id
+            ORDER BY 
+                t.fecha DESC,
+                t.id DESC;
 
         `;
         db.all(sql, [], (error, rows) => {

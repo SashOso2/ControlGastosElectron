@@ -15,7 +15,10 @@ async function Lista() {
             FROM 
                 ${tabla} t
             JOIN 
-                ${tabla_grupo} g ON t.grupo_id = g.id;
+                ${tabla_grupo} g ON t.grupo_id = g.id
+            ORDER BY 
+                g.nombre,
+                t.nombre;
         `;
         db.all(sql, [], (error, rows) => {
             if (error) {

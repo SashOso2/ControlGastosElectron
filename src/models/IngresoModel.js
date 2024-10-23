@@ -17,7 +17,10 @@ async function Lista() {
             FROM 
                 ${tabla} t 
             JOIN 
-                ${tabla_fuente} f ON t.fuente_id = f.id;
+                ${tabla_fuente} f ON t.fuente_id = f.id
+            ORDER BY 
+                t.fecha DESC,
+                t.id DESC;
         `;
         db.all(sql, [], (error, rows) => {
             if (error) {

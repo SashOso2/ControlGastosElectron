@@ -2,6 +2,9 @@ const username = document.getElementById("username");
 const password = document.getElementById("password");
 
 async function Login() {
+    username.value=username.value.trim();
+    password.value=password.value.trim();
+
     const usuarios = [
         { id: 1, username: "admin", password: "admin" },
         { id: 2, username: "andrestch", password: "123" },

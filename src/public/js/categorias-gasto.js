@@ -3,7 +3,7 @@ document.querySelectorAll(".sidebar-link")[5].classList.add("selected");
 async function Listar() {
     const data=await CategoriaGasto.Lista();
     //------filtro-----------//
-    const busqueda=document.getElementById("busqueda").value;
+    const busqueda=document.getElementById("busqueda").value.trim();
     const data_filtrado=data.filter(item=>
         item.nombre.toLowerCase().includes(busqueda.toLowerCase())
         ||
@@ -55,7 +55,10 @@ async function Nuevo(){
         `,
 
         preConfirm:async () => {
-            let nombre = document.getElementById('nombre').value;
+            const input_nombre=document.getElementById('nombre');
+            input_nombre.value=input_nombre.value.trim().toUpperCase();
+            let nombre = input_nombre.value
+
             let grupo = document.getElementById('grupo').value;
 
             if (!nombre || !grupo) {
@@ -118,7 +121,10 @@ async function Editar(id){
             document.getElementById('grupo').value = obj.grupo.id;
         },
         preConfirm:async () => {
-            let nombre = document.getElementById('nombre').value;
+            const input_nombre=document.getElementById('nombre');
+            input_nombre.value=input_nombre.value.trim().toUpperCase();
+            let nombre = input_nombre.value
+            
             let grupo = document.getElementById('grupo').value;
 
             if (!nombre || !grupo) {

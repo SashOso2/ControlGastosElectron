@@ -79,39 +79,9 @@ function createWindow() {
     ventanaPrincipal.loadURL(`http://localhost:${PORT}`); // Cargar la aplicación desde el servidor Express
 }
 
-// Eventos para minimizar, maximizar y cerrar la ventana
-ipcMain.on('minimize-window', () => {
-    ventanaPrincipal.minimize();
-});
-
-ipcMain.on('maximize-window', () => {
-    if (ventanaPrincipal.isMaximized()) {
-        ventanaPrincipal.unmaximize();
-    } else {
-        ventanaPrincipal.maximize();
-    }
-});
-
-ipcMain.on('close-window', () => {
-    ventanaPrincipal.close();
-});
-
 // Iniciar la aplicación Electron
 app.whenReady().then(createWindow);
 
-// Cerrar la aplicación cuando todas las ventanas estén cerradas
-app.on('window-all-closed', () => {
-    if (process.platform !== 'darwin') { // En macOS, las aplicaciones permanecen abiertas si hay ventanas
-        app.quit();
-    }
-});
-
-// Reabrir la ventana si la aplicación se activa y no hay ninguna ventana abierta (solo en macOS)
-app.on('activate', () => {
-    if (BrowserWindow.getAllWindows().length === 0) {
-        createWindow();
-    }
-});
 
 
 

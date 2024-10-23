@@ -8,7 +8,7 @@ async function Listar() {
     let data=await Ingreso.Lista();
     data=FiltrarPorFecha(data,año,mes)
     //------filtro-----------//
-    const busqueda=document.getElementById("busqueda").value;
+    const busqueda=document.getElementById("busqueda").value.trim();
     const data_filtrado=data.filter(item=>
         item.observacion.toLowerCase().includes(busqueda.toLowerCase())
         ||
@@ -78,10 +78,14 @@ async function Nuevo(){
             });
         },
         preConfirm:async () => {
+            const input_observacion=document.getElementById('observacion');
+            input_observacion.value=input_observacion.value.trim();
+            let observacion = input_observacion.value;
+
+            let monto = document.getElementById('monto').value;
+
             let fecha = document.getElementById('fecha').value;
             let fuente = document.getElementById('fuente').value;
-            let observacion = document.getElementById('observacion').value;
-            let monto = document.getElementById('monto').value;
 
             if (!fecha || !fuente || !monto) {
                 Swal.showValidationMessage('Por favor, complete todos los campos obligatorios');
@@ -156,10 +160,14 @@ async function Editar(id){
             });
         },
         preConfirm:async () => {
+            const input_observacion=document.getElementById('observacion');
+            input_observacion.value=input_observacion.value.trim();
+            let observacion = input_observacion.value;
+
+            let monto = document.getElementById('monto').value;
+
             let fecha = document.getElementById('fecha').value;
             let fuente = document.getElementById('fuente').value;
-            let observacion = document.getElementById('observacion').value;
-            let monto = document.getElementById('monto').value;
 
             if (!fecha || !fuente || !monto) {
                 Swal.showValidationMessage('Por favor, complete todos los campos obligatorios');

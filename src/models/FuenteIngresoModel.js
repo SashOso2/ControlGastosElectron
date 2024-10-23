@@ -5,7 +5,11 @@ const tabla = "fuente_ingreso";
 // Lista todos los registros de la tabla fuente_ingreso
 async function Lista() {
     return new Promise((resolve, reject) => {
-        const sql = `SELECT * FROM ${tabla}`;
+        const sql = `
+            SELECT * FROM ${tabla}
+            ORDER BY 
+                nombre;
+        `;
         db.all(sql, [], (error, rows) => {
             if (error) {
                 console.error('Error al listar registros:', error);

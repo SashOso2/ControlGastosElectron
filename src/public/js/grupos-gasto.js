@@ -2,7 +2,7 @@ document.querySelectorAll(".sidebar-link")[4].classList.add("selected");
 //------------------------------------------------------------------------
 async function Listar() {
     const data=await GrupoGasto.Lista();
-    const busqueda=document.getElementById("busqueda").value;
+    const busqueda=document.getElementById("busqueda").value.trim();
     const data_filtrado=data.filter(item=>
         item.nombre.toLowerCase().includes(busqueda.toLowerCase())
     );
@@ -40,7 +40,9 @@ async function Nuevo(){
         `,
 
         preConfirm:async () => {
-            let nombre = document.getElementById('nombre').value;
+            const input_nombre=document.getElementById('nombre');
+            input_nombre.value=input_nombre.value.trim().toUpperCase();
+            let nombre = input_nombre.value
 
             if (!nombre) {
                 Swal.showValidationMessage('Por favor, complete todos los campos obligatorios');
@@ -88,7 +90,9 @@ async function Editar(id){
         `,
 
         preConfirm:async () => {
-            let nombre = document.getElementById('nombre').value;
+            const input_nombre=document.getElementById('nombre');
+            input_nombre.value=input_nombre.value.trim().toUpperCase();
+            let nombre = input_nombre.value
 
             if (!nombre) {
                 Swal.showValidationMessage('Por favor, complete todos los campos obligatorios');
