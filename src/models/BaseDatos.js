@@ -2,10 +2,12 @@ const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 
 
-const dbPath = path.join(__dirname, '../data.db');
+//const ruta_base_datos = path.join(__dirname, '../data.db');
+const os = require('os');
+const ruta_base_datos = path.join(os.homedir(), 'Documents', 'control_gastos.db');
 
 
-const db = new sqlite3.Database(dbPath, (error) => {
+const db = new sqlite3.Database(ruta_base_datos, (error) => {
     if (error) {
         console.error('Error al conectar a la base de datos:', error.message);
     } else {
