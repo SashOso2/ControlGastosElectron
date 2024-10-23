@@ -20,6 +20,9 @@ table{
 td,th{
     text-align: left;
     padding: 5px;
+    white-space: nowrap; /* Evitar salto de línea */
+    overflow: hidden;    /* Ocultar el texto que desborda */
+    text-overflow: ellipsis;
 }
 tr{
     border-bottom: 1px solid rgb(171, 171, 171);
