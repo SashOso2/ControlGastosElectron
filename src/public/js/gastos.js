@@ -14,9 +14,9 @@ async function Listar() {
         ||
         item.categoria.grupo.nombre.toLowerCase().includes(busqueda.toLowerCase())
         ||
-        parseInt(item.monto)===parseInt(busqueda)
+        FormatoFecha(item.fecha).toLowerCase().includes(busqueda.toLowerCase())
         ||
-        FormatoFecha(item.fecha)===busqueda
+        parseInt(item.monto)===parseInt(busqueda)
     );
     //-----------------------//
     let content="";
