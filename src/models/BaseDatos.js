@@ -1,11 +1,8 @@
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 
-
-//const ruta_base_datos = path.join(__dirname, '../data.db');
 const os = require('os');
 const ruta_base_datos = path.join(os.homedir(), 'Documents', 'control_gastos.db');
-
 
 const db = new sqlite3.Database(ruta_base_datos, (error) => {
     if (error) {
