@@ -9,3 +9,11 @@ document.getElementById("mes").addEventListener("change",async ()=>{
 document.getElementById("año").addEventListener("change",async ()=>{
     await Listar();
 })
+
+document.getElementById("busqueda").addEventListener("keyup",async ()=>{
+    await Listar()
+})
+
+document.getElementById("btn-busqueda").addEventListener("click",async ()=>{
+    await Listar()
+})

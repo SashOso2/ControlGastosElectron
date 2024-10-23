@@ -7,9 +7,20 @@ async function Listar() {
     const año=parseInt(document.getElementById("año").value);
     let data=await Ingreso.Lista();
     data=FiltrarPorFecha(data,año,mes)
-
+    //------filtro-----------//
+    const busqueda=document.getElementById("busqueda").value;
+    const data_filtrado=data.filter(item=>
+        item.observacion.toLowerCase().includes(busqueda.toLowerCase())
+        ||
+        item.fuente.nombre.toLowerCase().includes(busqueda.toLowerCase())
+        ||
+        parseInt(item.monto)===parseInt(busqueda)
+        ||
+        FormatoFecha(item.fecha)===busqueda
+    );
+    //-----------------------//
     let content="";
-    data.forEach((row,index) => {
+    data_filtrado.forEach((row,index) => {
         content+=`
             <tr>
                 <td>${index+1}</td>

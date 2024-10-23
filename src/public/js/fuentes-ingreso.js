@@ -2,9 +2,14 @@ document.querySelectorAll(".sidebar-link")[3].classList.add("selected");
 //------------------------------------------------------------------------
 async function Listar() {
     const data=await FuenteIngreso.Lista();
-
+    //------filtro-----------//
+    const busqueda=document.getElementById("busqueda").value;
+    const data_filtrado=data.filter(item=>
+        item.nombre.toLowerCase().includes(busqueda.toLowerCase())
+    );
+    //-----------------------//
     let content="";
-    data.forEach((row,index) => {
+    data_filtrado.forEach((row,index) => {
         content+=`
             <tr>
                 <td>${index+1}</td>
