@@ -1,53 +1,41 @@
 <%- include('partials/header') %>
-<div class="resumen">
-    <div class="resumen-ingresos">
-        <i class="fa-solid fa-arrow-up"></i>
-        <span  id="ingresos-monto">S/ 0.00</span>
-        <small>Ingresos este mes</small>
-    </div>
-    <div class="resumen-gastos">
-        <i class="fa-solid fa-arrow-down"></i>
-        <span  id="gastos-monto">S/ 0.00</span>
-        <small>Gastos este mes</small>
-    </div>
-    <div class="resumen-total">
-        <i class="fa-solid fa-wallet"></i>
-        <span id="saldo-disponible">S/ 0.00</span>
-        <small>Saldo disponible</small>
-    </div>
-</div>
-
-<div class="graficas">
-    <div class="graficas-lateral">
-        <div class="cont-canvas">
-            <h4 class="canvas_titulo">Ingresos Mensual</h4>
-            <canvas id="canvas_ingresos"></canvas>
-        </div>
-        <div class="cont-canvas">
-            <h4 class="canvas_titulo">Gastos Mensual</h4>
-            <canvas id="canvas_gastos"></canvas>
-        </div>
-    </div> 
-    <div class="graficas-central">
-        <div class="cont-canvas">
-            <h4 class="canvas_titulo">Comparativa Mensual de Ingresos y Gastos</h4>
-            <canvas width="300" height="200" id="canvas_anual"></canvas>
-        </div>
-    </div>
-</div>
-
-
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <div class="resumen">
+        <div class="resumen-ingresos">
+            <i class="fa-solid fa-arrow-up"></i>
+            <span  id="ingresos-monto">S/ 0.00</span>
+            <small>Ingresos este mes</small>
+        </div>
+        <div class="resumen-gastos">
+            <i class="fa-solid fa-arrow-down"></i>
+            <span  id="gastos-monto">S/ 0.00</span>
+            <small>Gastos este mes</small>
+        </div>
+        <div class="resumen-total">
+            <i class="fa-solid fa-wallet"></i>
+            <span id="saldo-disponible">S/ 0.00</span>
+            <small>Saldo disponible</small>
+        </div>
+    </div>
+
+    <div class="graficas">
+        <div class="graficas-lateral">
+            <div class="cont-canvas">
+                <h4 class="canvas_titulo">Ingresos Mensual</h4>
+                <canvas id="canvas_ingresos"></canvas>
+            </div>
+            <div class="cont-canvas">
+                <h4 class="canvas_titulo">Gastos Mensual</h4>
+                <canvas id="canvas_gastos"></canvas>
+            </div>
+        </div> 
+        <div class="graficas-central">
+            <div class="cont-canvas">
+                <h4 class="canvas_titulo">Comparativa Mensual de Ingresos y Gastos</h4>
+                <canvas width="300" height="200" id="canvas_anual"></canvas>
+            </div>
+        </div>
+    </div>
 <script src="js/graficas.js"></script>
 <script src="js/resumen.js"></script>
-<script>
-    const labels = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio','Agosto','Setiembre','Octubre','Noviembre','Diciembre'];
-        const ingresos = [3000, 4000, 3500, 5000, 4500,2000, 2500, 3000, 4000, 3500,2324,2135];
-        const gastos = [2000, 2500, 3000, 4000, 3500,3000, 4000, 3500, 5000, 4500,980,5200];
-
-        createPieChart('canvas_ingresos', ['Sueldo', 'Cachuelo'], [2500,200]);
-        createPieChart('canvas_gastos', ['Alimentacion', 'educacion',"servicios","servicios","otros"], [50,1250,200,200,500]);
-        createBarChart('canvas_anual', labels, ingresos, gastos);
-
-</script>
 <%- include('partials/footer') %>

@@ -297,7 +297,7 @@ main{
             display: block;
             margin: auto;
             width: 100%;
-            max-width: 500px;
+            max-height: 400px;
         }
     }
     /*partes*/
