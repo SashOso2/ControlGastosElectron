@@ -1,10 +1,16 @@
-function CrearApi(url) {
+function CrearApi(endpoint) {
+    const baseUrl = window.location.origin;
+    const url = `${baseUrl}${endpoint}`;
+
     return {
         async Lista() {
             const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error('Error al obtener la lista');
+            }
             return response.json();
         },
-        
+
         async Agregar(obj) {
             const response = await fetch(url, {
                 method: 'POST',
@@ -18,9 +24,12 @@ function CrearApi(url) {
             }
             return response.json();
         },
-        
+
         async Buscar(id) {
             const response = await fetch(`${url}/${id}`);
+            if (!response.ok) {
+                throw new Error('Error al buscar el registro');
+            }
             return response.json();
         },
 
@@ -28,6 +37,9 @@ function CrearApi(url) {
             const response = await fetch(`${url}/${id}`, {
                 method: 'DELETE',
             });
+            if (!response.ok) {
+                throw new Error('Error al eliminar el registro');
+            }
             return response.ok;
         },
 
@@ -48,8 +60,8 @@ function CrearApi(url) {
 }
 
 // Crear instancias de la API
-const Ingreso = CrearApi("http://localhost:3000/api/ingresos");
-const Gasto = CrearApi("http://localhost:3000/api/gastos");
-const FuenteIngreso = CrearApi("http://localhost:3000/api/fuentes-ingreso");
-const GrupoGasto = CrearApi("http://localhost:3000/api/grupos-gasto");
-const CategoriaGasto = CrearApi("http://localhost:3000/api/categorias-gasto");
+const Ingreso = CrearApi("/api/ingresos");
+const Gasto = CrearApi("/api/gastos");
+const FuenteIngreso = CrearApi("/api/fuentes-ingreso");
+const GrupoGasto = CrearApi("/api/grupos-gasto");
+const CategoriaGasto = CrearApi("/api/categorias-gasto");

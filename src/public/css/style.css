@@ -1,4 +1,179 @@
+:root{
+    --sidebar-background-color:#212529;
+    --sidebar-color:white;
+    --sidebar-width: 240px;
+    --sidebar-compressed-width: 50px;
+    --sidebar-button-background-color:#0D6EFD;
+    --sidebar-button-color:white;
+}
+*{
+    user-select: none;
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+body{
+    background-color: rgb(231, 231, 231);
+    overflow: hidden;
+}
+.container{
+    display: flex;
+    height: 100dvh;
+}
+.content{
+    width: 100%;
+    overflow: auto;
+    position: relative;
+}
+/*###############################-sidebar-#############################*/
+.sidebar{
+    width: var(--sidebar-width);
+    background-color: var(--sidebar-background-color);
+    color: var(--sidebar-color);
+    padding: 12px;
+    transition: width 1s ease,padding 1s;
+    overflow: auto;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.3);
+    scrollbar-width: none;
+    & hr {
+        border-color: rgba(255, 255, 255, 0.238);
+        margin: 10px 0px;
+        transition: margin 1s;
+    }
+    & .sidebar-header{
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        & .logo{
+            display: block;
+            width: 40px;
+            transition: width 1s, padding 1s;
+            margin-right: 10px;
+        }
+        & .app-name{
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            transition:opacity 1s;
+        }
+    }
+    & ul{
+        list-style: none;
+        & .sidebar-link{
+            color: var(--sidebar-color);
+            text-decoration: none;
+            font-size: 14px;
+            border-radius: 5px;
+            height: 30px;
+            transition: height 1s;         
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: center;
+            & i{
+                text-align: center;
+                min-width: 40px;
+                transition:min-width 1s, font-size 1s;
+            }
 
+            & span{
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                transition:opacity 1s;
+            }
+        }
+        & .sidebar-link.selected{
+            background-color:var(--sidebar-button-background-color);
+            color: var(--sidebar-button-color);
+        }
+    }
+}
+@media (max-width: 780px) {
+    .sidebar{
+        padding: 0px !important;
+        width: var(--sidebar-compressed-width) !important;
+        min-width: var(--sidebar-compressed-width) !important;
+        & hr{
+            margin: 0px !important;
+        }
+        & .sidebar-header{
+            & .logo{
+                width: var(--sidebar-compressed-width) !important;
+                padding: 10px !important;
+            }
+            & .app-name{
+                opacity: 0 !important;
+            }
+        }
+        & .sidebar-link{
+            border-radius: 0px !important;
+            height: var(--sidebar-compressed-width) !important;
+            & i{
+                min-width: var(--sidebar-compressed-width) !important;
+                font-size: 16px !important;
+            }
+            & span{
+                opacity: 0 !important;
+            }
+        }
+    }
+}
+/*###############################-header-#############################*/
+header{
+    background-color: #ffffff;
+    position: sticky;
+    top: 0px;
+    z-index: 100;
+    padding: 10px;
+    gap: 10px;
+    display: grid;
+    grid-template-columns: auto 1fr ;
+    border-top: 1px solid rgb(226, 226, 226);
+    overflow: hidden;
+    align-items: center;
+
+    & .search-box {
+        align-items: center;
+        background-color: rgb(255, 255, 255);
+        display: grid;
+        grid-template-columns: 1fr auto;
+        border-radius: 3px;
+        overflow: hidden;
+        border: 1px solid rgb(148, 148, 148);
+    
+        & input {
+            background-color: transparent;
+            padding: 5px;
+            border: none;
+            outline: none;
+            min-width: 0px;
+            width: 100px;
+        }
+        &  button{
+            background-color: transparent;
+            padding: 5px;
+            border: none;
+            outline: none;
+            cursor: pointer;
+        }
+    }
+
+    & .combo-fecha{
+        margin-left: auto;
+        color: black;
+        display: flex;
+        flex-direction: row;
+        & select{
+            background-color: transparent;
+            outline: none;
+            border: none;
+            padding: 5px;
+        }
+        
+    }
+}
+/*###############################-main-#############################*/
 main{
     padding: 10px;
     display: flex;
@@ -6,7 +181,7 @@ main{
     flex: 1;
     gap: 10px;
 }
-
+/*###############################-componentes-#############################*/
 .table-container{
     background-color: white;
     padding: 10px;
@@ -49,8 +224,6 @@ main{
     }
     
 }
-
-
 .titulo{
     color: var(--titulo-color);
     width: max-content;
@@ -66,59 +239,46 @@ main{
     cursor: pointer;
     float: right;
 }
-
-
-
-
-
-/*-------alert---------*/
 .formulario{
     display: grid;
     grid-template-columns: max-content auto;
     gap: 20px;
     align-items:center ;
     text-align: left;
+    & input,select{
+        margin: 0;
+        min-width: 0;
+    }
 }
-.formulario input,.formulario select{
-    margin: 0;
-    min-width: 0;
-}
-
-
-
-
 .resumen{
     gap: 10px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    &>div{
+        border-radius: 5px;
+        padding: 10px;
+        gap: 10px;
+        display: grid;
+        grid-template-rows: auto auto;
+        & i{
+            font-size: 20px;
+            color: rgb(109, 171, 225);
+        }
+        & span{
+            font-weight: bolder;
+            font-size: 18px;
+        }
+    }
+    & .resumen-ingresos{
+        background-color: rgb(217, 250, 231);
+    }
+    & .resumen-gastos{
+        background-color: rgb(254, 238, 241);
+    }
+    & .resumen-total{
+        background-color: rgb(254, 242, 220);
+    }
 }
-.resumen>div{
-    border-radius: 5px;
-    padding: 10px;
-    gap: 10px;
-    display: grid;
-    grid-template-rows: auto auto;
-}
-.resumen>div i{
-    font-size: 20px;
-    color: rgb(109, 171, 225);
-}
-.resumen>div span{
-    font-weight: bolder;
-    font-size: 18px;
-}
-.resumen-ingresos{
-    background-color: rgb(217, 250, 231);
-}
-.resumen-gastos{
-    background-color: rgb(254, 238, 241);
-}
-.resumen-total{
-    background-color: rgb(254, 242, 220);
-}
-
-
-
 .graficas{
     display: grid;
     grid-template-columns: max-content 1fr;
@@ -133,7 +293,6 @@ main{
 canvas{
     width: 100%;
 }
-
 .graficas-central{
     width: 100%;
 }
