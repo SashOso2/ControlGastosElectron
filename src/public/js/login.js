@@ -26,9 +26,15 @@ async function Login() {
     }
 }
 
-username.addEventListener("keyup", () => {
+username.addEventListener("keyup", (event) => {
+    if (event.key === "Enter") {
+        password.focus();
+    }
     username.style.backgroundColor = "white";
 });
-password.addEventListener("keyup", () => {
+password.addEventListener("keyup", (event) => {
+    if (event.key === "Enter") {
+        Login();
+    }
     password.style.backgroundColor = "white";
 });
