@@ -64,10 +64,14 @@ expressApp.listen(PORT, () => {
 
 // Función para crear la ventana principal de Electron
 function createWindow() {
+    if (ventanaPrincipal) {
+        ventanaPrincipal.focus();
+        return;
+    }
+
     ventanaPrincipal = new BrowserWindow({
         width: 1024,
         height: 600,
-        //frame: false,
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
@@ -77,10 +81,27 @@ function createWindow() {
     ventanaPrincipal.setMenu(null); // Quitar menú
 
     ventanaPrincipal.loadURL(`http://localhost:${PORT}`); // Cargar la aplicación desde el servidor Express
+
+    ventanaPrincipal.on('closed', () => {
+        ventanaPrincipal = null; // Limpiar la referencia cuando la ventana se cierra
+    });
 }
 
 // Iniciar la aplicación Electron
 app.whenReady().then(createWindow);
+
+// Cerrar la aplicación cuando todas las ventanas están cerradas
+app.on('window-all-closed', () => {
+    if (process.platform !== 'darwin') {
+        app.quit();
+    }
+});
+
+app.on('activate', () => {
+    if (ventanaPrincipal === null) {
+        createWindow();
+    }
+});
 
 
 
