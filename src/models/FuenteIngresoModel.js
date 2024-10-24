@@ -2,8 +2,7 @@ const db = require('./BaseDatos');
 
 const tabla = "fuente_ingreso";
 
-// Lista todos los registros de la tabla fuente_ingreso
-async function Lista() {
+module.exports.lista=async ()=>{
     return new Promise((resolve, reject) => {
         const sql = `
             SELECT * FROM ${tabla}
@@ -19,15 +18,11 @@ async function Lista() {
         });
     });
 }
-
-// Busca un registro por ID
-async function Buscar(id) {
-    const lista = await Lista();
+module.exports.buscar=async (id)=>{
+    const lista = await this.lista();
     return lista.find(item => item.id === Number(id)) || null;
 }
-
-// Agrega un nuevo registro
-async function Agregar(obj) {
+module.exports.agregar=async (obj)=>{
     return new Promise((resolve, reject) => {
         const sql = `INSERT INTO ${tabla} (nombre) VALUES (?)`;
         db.run(sql, [obj.nombre], function (error) {
@@ -40,11 +35,9 @@ async function Agregar(obj) {
         });
     });
 }
-
-// Actualiza un registro existente
-async function Actualizar(obj) {
+module.exports.actualizar=async(obj)=>{
     return new Promise( async(resolve, reject) => {
-        if (!await Buscar(obj.id))  return reject(new Error('El registro no existe.'));
+        if (!await this.buscar(obj.id))  return reject(new Error('El registro no existe.'));
 
         const sql = `UPDATE ${tabla} SET nombre = ? WHERE id = ?`;
         db.run(sql, [obj.nombre, obj.id], function (error) {
@@ -56,11 +49,9 @@ async function Actualizar(obj) {
         });
     });
 }
-
-// Elimina un registro por ID
-async function Eliminar(id) {
+module.exports.eliminar=async(id)=>{
     return new Promise(async(resolve, reject) => {
-        //if (!await Buscar(obj.id))  return reject(new Error('El registro no existe.'));
+        if (!await this.buscar(id))  return reject(new Error('El registro no existe.'));
 
         const sql = `DELETE FROM ${tabla} WHERE id = ?`;
         db.run(sql, [id], function (error) {
@@ -72,12 +63,4 @@ async function Eliminar(id) {
         });
     });
 }
-
-module.exports = {
-    Lista,
-    Buscar,
-    Agregar,
-    Actualizar,
-    Eliminar
-};
 

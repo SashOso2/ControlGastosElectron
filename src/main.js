@@ -15,18 +15,18 @@ expressApp.use(express.static(path.join(__dirname, 'public')));
 expressApp.use(express.json());
 
 // Rutas Express
-const IngresoRouter = require('./routers/IngresoRouter');
-const GastoRouter = require('./routers/GastoRouter');
-const FuenteIngresoRouter = require('./routers/FuenteIngresoRouter');
-const GrupoGastoRouter = require('./routers/GrupoGastoRouter');
-const CategoriaGastoRouter = require('./routers/CategoriaGastoRouter');
+const IngresoRoutes = require('./routers/IngresoRoutes');
+const GastoRoutes = require('./routers/GastoRoutes');
+const FuenteIngresoRoutes = require('./routers/FuenteIngresoRoutes');
+const GrupoGastoRoutes = require('./routers/GrupoGastoRoutes');
+const CategoriaGastoRoutes = require('./routers/CategoriaGastoRoutes');
 
 // Usar las rutas
-expressApp.use(IngresoRouter);
-expressApp.use(GastoRouter);
-expressApp.use(FuenteIngresoRouter);
-expressApp.use(GrupoGastoRouter);
-expressApp.use(CategoriaGastoRouter);
+expressApp.use(IngresoRoutes);
+expressApp.use(GastoRoutes);
+expressApp.use(FuenteIngresoRoutes);
+expressApp.use(GrupoGastoRoutes);
+expressApp.use(CategoriaGastoRoutes);
 
 // Rutas de renderización con EJS
 expressApp.get('/', (req, res) => {
