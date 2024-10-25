@@ -126,7 +126,6 @@ function createLineChart(canvasId, labels, ingresos, gastos) {
     const ctx = document.getElementById(canvasId).getContext('2d');
     const chart = new Chart(ctx, config);
 
-    // Asegúrate de que el gráfico se redimensione correctamente
     window.addEventListener('resize', () => {
         chart.resize();
     });

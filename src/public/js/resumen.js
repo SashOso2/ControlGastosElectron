@@ -41,13 +41,20 @@ async function Resumen() {
     }
 
     ///graficas
-    const labels = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio','Agosto','Setiembre','Octubre','Noviembre','Diciembre'];
-    const ingresos_values = [3000, 4000, 3500, 5000, 4500,2000, 2500, 3000, 4000, 3500,2324,2135];
-    const gastos_values = [2000, 2500, 3000, 4000, 3500,3000, 4000, 3500, 5000, 4500,980,5200];
+    const grupos_gasto_labels = ['Alimentacion', 'educacion',"servicios","servicios","otros"];
+    const grupos_gasto_values = [50,1250,200,200,500];
 
-    createPieChart('canvas_ingresos', ['Sueldo', 'Cachuelo'], [2500,200]);
-    createPieChart('canvas_gastos', ['Alimentacion', 'educacion',"servicios","servicios","otros"], [50,1250,200,200,500]);
-    createLineChart('canvas_anual', labels, ingresos_values, gastos_values);
+    const fuentes_ingreso_labels = ['Alimentacion', 'educacion',"servicios","servicios","otros"];
+    const fuentes_ingreso_values = [50,1250,200,200,500];
+
+
+    const meses_labels = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio','Agosto','Setiembre','Octubre','Noviembre','Diciembre'];
+    const meses_ingresos_values = [3000, 4000, 3500, 5000, 4500,2000, 2500, 3000, 4000, 3500,2324,2135];
+    const meses_gastos_values = [2000, 2500, 3000, 4000, 3500,3000, 4000, 3500, 5000, 4500,980,5200];
+
+    createPieChart('canvas_ingresos', fuentes_ingreso_labels, fuentes_ingreso_values);
+    createPieChart('canvas_gastos', grupos_gasto_labels,grupos_gasto_values );
+    createLineChart('canvas_anual', meses_labels, meses_ingresos_values, meses_gastos_values);
 }
 
 
