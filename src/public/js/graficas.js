@@ -1,4 +1,19 @@
+function destroyChart(ctx) {
+    const chartInstance = Chart.getChart(ctx.canvas); // Obtiene el gráfico asociado al canvas
+    if (chartInstance) {
+        chartInstance.destroy(); // Destruye el gráfico si existe
+    }
+}
+function getRandomColor() {
+    const randomColor = Math.floor(Math.random() * 16777215).toString(16);
+    return `#${randomColor}`;
+}
+
+//--------------------------------------//
 function createBarChart(canvasId, labels, ingresos, gastos) {
+    const ctx = document.getElementById(canvasId).getContext('2d');
+    destroyChart(ctx);
+    
     const data = {
         labels: labels,
         datasets: [
@@ -25,7 +40,7 @@ function createBarChart(canvasId, labels, ingresos, gastos) {
                     beginAtZero: true,
                     title: {
                         display: true,
-                        text: 'Monto ($)',
+                        text: 'Monto (S/)',
                     }
                 },
                 x: {
@@ -44,7 +59,7 @@ function createBarChart(canvasId, labels, ingresos, gastos) {
                         label: function(context) {
                             let label = context.dataset.label || '';
                             if (context.parsed.y !== null) {
-                                label += ': $' + context.parsed.y;
+                                label += ': ' + FormatoSoles(context.parsed.y);
                             }
                             return label;
                         }
@@ -54,16 +69,17 @@ function createBarChart(canvasId, labels, ingresos, gastos) {
         }
     };
 
-    const ctx = document.getElementById(canvasId).getContext('2d');
+    
     const chart = new Chart(ctx, config);
 
-    
     window.addEventListener('resize', () => {
         chart.resize();
     });
     
 }
 function createLineChart(canvasId, labels, ingresos, gastos) {
+    const ctx = document.getElementById(canvasId).getContext('2d');
+
     const data = {
         labels: labels,
         datasets: [
@@ -94,7 +110,7 @@ function createLineChart(canvasId, labels, ingresos, gastos) {
                     beginAtZero: true,
                     title: {
                         display: true,
-                        text: 'Monto ($)',
+                        text: 'Monto (S/)',
                     }
                 },
                 x: {
@@ -113,7 +129,7 @@ function createLineChart(canvasId, labels, ingresos, gastos) {
                         label: function(context) {
                             let label = context.dataset.label || '';
                             if (context.parsed.y !== null) {
-                                label += ': $' + context.parsed.y;
+                                label += ': ' +FormatoSoles(context.parsed.y) ;
                             }
                             return label;
                         }
@@ -123,19 +139,15 @@ function createLineChart(canvasId, labels, ingresos, gastos) {
         }
     };
 
-    const ctx = document.getElementById(canvasId).getContext('2d');
     const chart = new Chart(ctx, config);
 
     window.addEventListener('resize', () => {
         chart.resize();
     });
 }
-function getRandomColor() {
-    const randomColor = Math.floor(Math.random() * 16777215).toString(16);
-    return `#${randomColor}`;
-}
-
 function createPieChart(canvasId, labels, values) {
+    const ctx = document.getElementById(canvasId).getContext('2d');
+    destroyChart(ctx);
     // Filtra las etiquetas y valores para eliminar los que son 0
     const filteredData = labels.reduce((acc, label, index) => {
         if (values[index] !== 0) {
@@ -173,7 +185,7 @@ function createPieChart(canvasId, labels, values) {
                         label: function(context) {
                             let label = context.label || '';
                             if (context.parsed !== null) {
-                                label += ': $' + context.parsed; // Muestra el monto
+                                label += ': ' + FormatoSoles(context.parsed); // Muestra el monto
                             }
                             return label;
                         }
@@ -183,7 +195,6 @@ function createPieChart(canvasId, labels, values) {
         }
     };
 
-    const ctx = document.getElementById(canvasId).getContext('2d');
     const chart = new Chart(ctx, config);
 
     window.addEventListener('resize', () => {

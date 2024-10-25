@@ -18,8 +18,11 @@ function Hoy(){
 
 function FiltrarPorFecha(lista, año, mes) {
     return lista.filter(item => {
-        const fecha = new Date(item.fecha); // Asegúrate de que 'fecha' sea la propiedad correcta
-        return fecha.getFullYear() === año && (fecha.getMonth() + 1) === mes;
+        const fecha = new Date(item.fecha);
+        const esAño = año === 0 || fecha.getFullYear() === año;
+        const esMes = mes === 0 || (fecha.getMonth() + 1) === mes;
+        
+        return esAño && esMes;
     });
 }
 

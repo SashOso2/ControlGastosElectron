@@ -1,24 +1,18 @@
 document.querySelectorAll(".sidebar-link")[0].classList.add("selected");
 
 
-async function ListaIngresos() {
-    const mes=parseInt(document.getElementById("mes").value);
-    const año=parseInt(document.getElementById("año").value);
-    const lista=await Ingreso.Lista();
-    return FiltrarPorFecha(lista,año,mes);
-}
-async function ListaGastos() {
-    const mes=parseInt(document.getElementById("mes").value);
-    const año=parseInt(document.getElementById("año").value);
-    const lista=await Gasto.Lista();
-    return FiltrarPorFecha(lista,año,mes);
-}
-
 async function Resumen() {
+    const mes=parseInt(document.getElementById("mes").value);
+    const año=parseInt(document.getElementById("año").value);
+
+    const lista_ingresos_total=await Ingreso.Lista();
+    const lista_gastos_total=await Gasto.Lista();
+    const lista_ingresos_mes= await FiltrarPorFecha(lista_ingresos_total,año,mes);
+    const lista_gastos_mes=await FiltrarPorFecha(lista_gastos_total,año,mes);;
     const lista_grupos_gasto=await GrupoGasto.Lista();
     const lista_fuentes_ingreso=await FuenteIngreso.Lista();
-    const lista_ingresos_mes= await ListaIngresos();
-    const lista_gastos_mes=await ListaGastos();;
+    const lista_ingresos_año= await FiltrarPorFecha(lista_ingresos_total,año,0);
+    const lista_gastos_año=await FiltrarPorFecha(lista_gastos_total,año,0);;
 
     let ingresos_mes_monto=0;
     lista_ingresos_mes.forEach(fila => {
@@ -62,15 +56,25 @@ async function Resumen() {
         });
     }
     
-
-
     const meses_labels = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio','Agosto','Setiembre','Octubre','Noviembre','Diciembre'];
-    const meses_ingresos_values = [3000, 4000, 3500, 5000, 4500,2000, 2500, 3000, 4000, 3500,2324,2135];
-    const meses_gastos_values = [2000, 2500, 3000, 4000, 3500,3000, 4000, 3500, 5000, 4500,980,5200];
+    const meses_ingresos_values = [0,0,0,0,0,0,0,0,0,0,0,0];
+    const meses_gastos_values = [0,0,0,0,0,0,0,0,0,0,0,0];
+    for (let i = 1; i < meses_labels.length; i++) {
+        const lista_ingresos_año_mes=FiltrarPorFecha(lista_ingresos_año,0,i+1)
+        const lista_gastos_año_mes=FiltrarPorFecha(lista_gastos_año,0,i+1)
+        
+        lista_ingresos_año_mes.forEach(item => {
+            meses_ingresos_values[i]+=item.monto
+        });
+        lista_gastos_año_mes.forEach(item => {
+            meses_gastos_values[i]+=item.monto
+        });
+        
+    }
 
     createPieChart('canvas_ingresos', fuentes_ingreso_labels, fuentes_ingreso_values);
     createPieChart('canvas_gastos', grupos_gasto_labels,grupos_gasto_values );
-    createLineChart('canvas_anual', meses_labels, meses_ingresos_values, meses_gastos_values);
+    createBarChart('canvas_anual', meses_labels, meses_ingresos_values, meses_gastos_values);
 }
 
 
