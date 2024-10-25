@@ -71,10 +71,9 @@ function createBarChart(canvasId, labels, ingresos, gastos) {
 
     
     const chart = new Chart(ctx, config);
-
-    window.addEventListener('resize', () => {
-        chart.resize();
-    });
+    window.addEventListener("resize",()=>{
+        chart.resize()
+    })
     
 }
 function createLineChart(canvasId, labels, ingresos, gastos) {
@@ -140,6 +139,7 @@ function createLineChart(canvasId, labels, ingresos, gastos) {
     };
 
     const chart = new Chart(ctx, config);
+    
 
     window.addEventListener('resize', () => {
         chart.resize();
@@ -196,10 +196,9 @@ function createPieChart(canvasId, labels, values) {
     };
 
     const chart = new Chart(ctx, config);
-
-    window.addEventListener('resize', () => {
-        chart.resize();
-    });
+    window.addEventListener("resize",()=>{
+        chart.resize()
+    })
 }
 
 

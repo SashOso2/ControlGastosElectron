@@ -87,8 +87,5 @@ document.getElementById("año").addEventListener("change",async ()=>{
 window.addEventListener("load",async ()=>{
     document.getElementById("mes").value=MesActual();
     await Resumen();
+    
 })
-
-
-
-
