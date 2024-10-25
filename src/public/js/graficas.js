@@ -136,15 +136,23 @@ function getRandomColor() {
 }
 
 function createPieChart(canvasId, labels, values) {
-    const borderColors = labels.map(() => getRandomColor())
-    const backgroundColors = borderColors.map((color) => color+"80");
-    
+    // Filtra las etiquetas y valores para eliminar los que son 0
+    const filteredData = labels.reduce((acc, label, index) => {
+        if (values[index] !== 0) {
+            acc.labels.push(label);
+            acc.values.push(values[index]);
+        }
+        return acc;
+    }, { labels: [], values: [] });
+
+    const borderColors = filteredData.labels.map(() => getRandomColor());
+    const backgroundColors = borderColors.map(color => color + "80");
 
     const data = {
-        labels: labels,
+        labels: filteredData.labels,
         datasets: [{
             label: 'Distribución',
-            data: values,
+            data: filteredData.values,
             backgroundColor: backgroundColors,
             borderColor: borderColors,
             borderWidth: 1,
@@ -182,4 +190,5 @@ function createPieChart(canvasId, labels, values) {
         chart.resize();
     });
 }
+
 

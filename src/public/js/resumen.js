@@ -15,37 +15,53 @@ async function ListaGastos() {
 }
 
 async function Resumen() {
-    const lista_ingresos= await ListaIngresos();
-    const lista_gastos=await ListaGastos();;
+    const lista_grupos_gasto=await GrupoGasto.Lista();
+    const lista_fuentes_ingreso=await FuenteIngreso.Lista();
+    const lista_ingresos_mes= await ListaIngresos();
+    const lista_gastos_mes=await ListaGastos();;
 
-    let ingresos_monto=0;
-    lista_ingresos.forEach(fila => {
-        ingresos_monto+=fila.monto
+    let ingresos_mes_monto=0;
+    lista_ingresos_mes.forEach(fila => {
+        ingresos_mes_monto+=fila.monto
     });
 
-    let gastos_monto=0;
+    let gastos_mes_monto=0;
 
-    lista_gastos.forEach(fila => {
-        gastos_monto+=fila.monto
+    lista_gastos_mes.forEach(fila => {
+        gastos_mes_monto+=fila.monto
     });
 
 
-    let saldo_disponible=ingresos_monto-gastos_monto;
+    let saldo_mes_disponible=ingresos_mes_monto-gastos_mes_monto;
     
 
-    document.getElementById("ingresos-monto").textContent=FormatoSoles(ingresos_monto);
-    document.getElementById("gastos-monto").textContent=FormatoSoles(gastos_monto);
-    document.getElementById("saldo-disponible").textContent=FormatoSoles(saldo_disponible);
-    if(saldo_disponible<0){
+    document.getElementById("ingresos-monto").textContent=FormatoSoles(ingresos_mes_monto);
+    document.getElementById("gastos-monto").textContent=FormatoSoles(gastos_mes_monto);
+    document.getElementById("saldo-disponible").textContent=FormatoSoles(saldo_mes_disponible);
+    if(saldo_mes_disponible<0){
         document.getElementById("saldo-disponible").style.color="#ff3333";
     }
 
     ///graficas
-    const grupos_gasto_labels = ['Alimentacion', 'educacion',"servicios","servicios","otros"];
-    const grupos_gasto_values = [50,1250,200,200,500];
-
-    const fuentes_ingreso_labels = ['Alimentacion', 'educacion',"servicios","servicios","otros"];
-    const fuentes_ingreso_values = [50,1250,200,200,500];
+    const grupos_gasto_labels = lista_grupos_gasto.map(item => item.nombre);
+    const grupos_gasto_values = grupos_gasto_labels.map(() => 0);
+    for (let i = 0; i < grupos_gasto_labels.length; i++) {
+        const label=grupos_gasto_labels[i]
+        const agrupar=lista_gastos_mes.filter(item=>item.categoria.grupo.nombre===label)
+        agrupar.forEach(item => {
+            grupos_gasto_values[i]+=item.monto
+        });
+    }
+    const fuentes_ingreso_labels = lista_fuentes_ingreso.map(item => item.nombre);
+    const fuentes_ingreso_values = fuentes_ingreso_labels.map(() => 0);
+    for (let i = 0; i < fuentes_ingreso_labels.length; i++) {
+        const label=fuentes_ingreso_labels[i]
+        const agrupar=lista_ingresos_mes.filter(item=>item.fuente.nombre===label)
+        agrupar.forEach(item => {
+            fuentes_ingreso_values[i]+=item.monto
+        });
+    }
+    
 
 
     const meses_labels = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio','Agosto','Setiembre','Octubre','Noviembre','Diciembre'];
