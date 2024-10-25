@@ -15,11 +15,11 @@ expressApp.use(express.static(path.join(__dirname, 'public')));
 expressApp.use(express.json());
 
 // Rutas Express
-const IngresoRoutes = require('./routers/IngresoRoutes');
-const GastoRoutes = require('./routers/GastoRoutes');
-const FuenteIngresoRoutes = require('./routers/FuenteIngresoRoutes');
-const GrupoGastoRoutes = require('./routers/GrupoGastoRoutes');
-const CategoriaGastoRoutes = require('./routers/CategoriaGastoRoutes');
+const IngresoRoutes = require('./routes/IngresoRoutes');
+const GastoRoutes = require('./routes/GastoRoutes');
+const FuenteIngresoRoutes = require('./routes/FuenteIngresoRoutes');
+const GrupoGastoRoutes = require('./routes/GrupoGastoRoutes');
+const CategoriaGastoRoutes = require('./routes/CategoriaGastoRoutes');
 
 // Usar las rutas
 expressApp.use(IngresoRoutes);
