@@ -38,3 +38,7 @@ password.addEventListener("keyup", (event) => {
     }
     password.style.backgroundColor = "white";
 });
+
+window.addEventListener("load",function(){
+    username.select()
+})
